@@ -1,0 +1,366 @@
+<!-- <!DOCTYPE HTML>
+<html>
+<head>
+<title>Your Cart</title>
+<link rel="stylesheet" href={{url_for('static', filename='css/cart.css')}} />
+<link rel="stylesheet" href={{url_for('static', filename='css/topStyle.css') }} />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</head>
+<body>
+	<style>
+		/* html { 
+	
+	} */
+	 .card{
+		margin: 20px;
+		/* padding: 20px; */
+		display: flex;
+	flex-wrap: wrap;
+	} 
+	#cont{
+	display: flex;
+	flex-wrap: wrap;
+	} 
+	body{
+		background-color: azure;
+	  -webkit-background-size: cover;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+	}
+	input{
+		display: none;
+	}
+	nav
+	{
+	background-color:  #4382e1;
+	
+		
+	}
+	.card{
+		/* border: 1px solid black; */
+		background-color:white;
+	
+	}
+	li{
+		padding-left: 10px;
+		padding-right: 10px;
+		margin-right: 5x ;
+	}
+		/* #back{
+		background-color: aqua;
+		width: 300px;
+		height: 300px;
+		/* padding-top: 50px ; */
+		/* margin-top: 15px;
+		margin-bottom: 12px;
+	} */ 
+	#sin{
+		padding-left: 50px;
+		display: flex;
+	}
+	</style>
+	<body>
+		<nav class="navbar navbar-expand-lg ">
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#">Ecart</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="/">Home</a>
+				  </li>
+			  
+	  
+				</ul>
+				<div id="sin">
+					{% if not loggedIn %}
+					<li type="none" class="nav-item" id="signInButton">
+						<a class=" nav-link" href="/loginForm">Sign In</a>
+				  </li>
+					{% else %}
+					<li  type="none" class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  {{firstName}}
+					  </a>
+					  <ul class="dropdown-menu" >
+						<li><a class="dropdown-item" href="/account/orders">Your orders</a></li>
+						<li><a class="dropdown-item" href="/account/profile">Your profile</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+					  </ul>
+				  </li>
+				  {% endif %}
+				  <li type="none" class="nav-item">
+					<a  style="color: rgb(14, 83, 210);" class="nav-link disabled" href="/cart"><img src=".." id="cartIcon" />
+						{{noOfItems}}</a>
+				  </li>
+			  </div>
+			  </div>
+			</div>
+		</nav>
+<div id="cartItems">
+	<h2>Shopping Cart</h2>
+	<div id="tableItems">
+		{% for row in products %}
+		<div>
+			<hr id="seperator">
+			<div id="itemImage">
+				<img src={{url_for('static', filename='uploads/'+row[3])}} id="image"/>
+			</div>
+			<div id="itemName">
+				<span id="itemNameTag">{{row[1]}}</span><br>
+				In stock<br>
+				<a href="/removeFromCart?productId={{row[0]}}">Remove</a>
+			</div>
+			<div id="itemPrice">
+				${{row[2]}}
+			</div>
+		</div>
+		{% endfor %}
+		<hr id="seperator">
+		<div id="total">
+			<span id="subtotal">Subtotal</span> : ${{totalPrice}}
+		</div>
+	</div>
+</div>
+<a href="/checkout">Proceed to checkout</a>
+</body>
+</html> -->
+
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</head>
+<style>
+	/* html { 
+
+} */
+ .card{
+	margin: 20px;
+	/* padding: 20px; */
+	display: flex;
+flex-wrap: wrap;
+} 
+#cont{
+display: flex;
+flex-wrap: wrap;
+} 
+body{
+	background-color: azure;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+input{
+	display: none;
+}
+nav
+{
+background-color:  #2874f0;
+		
+width: 100%;
+			height: 50px;
+
+	
+}
+.card{
+	/* border: 1px solid black; */
+	background-color:white;
+
+}
+li{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 5x ;
+	color: white;
+
+}
+.li1{
+	color: white;
+}
+	/* #back{
+	background-color: aqua;
+	width: 300px;
+	height: 300px;
+	/* padding-top: 50px ; */
+	/* margin-top: 15px;
+	margin-bottom: 12px;
+} */ 
+#sin{
+	padding-left: 50px;
+	display: flex;
+}
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid" style="font-weight: 500; font-size: 18px;" >
+          <a class="navbar-brand li1" href="#">Ecart</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+		  <div id="sin">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link  navbar-brand active  li1" aria-current="page" href="/" style="color: white;">Home</a>
+              </li>
+          
+  
+			<li class="nav-item dropdown">
+			  <a  class="nav-link dropdown-toggle li1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex;">
+				  Category <br>
+			  </a>
+			  <ul class="dropdown-menu">
+					{% for row in categoryData %}
+			<li><a class="dropdown-item"  href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
+			{% endfor %}
+			  </ul>
+			</li>
+            </ul>
+			
+				{% if not loggedIn %}
+				<li type="none" class="nav-item" id="signInButton">
+					<a class=" nav-link navbar-brand" href="/loginForm" style="color: black;">Sign In</a>
+			  </li>
+				{% else %}
+				<li  type="none" class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				  {{firstName}}
+				  </a>
+				  <ul class="dropdown-menu" >
+					<li><a class="dropdown-item" href="/account/orders">Your orders</a></li>
+					<li><a class="dropdown-item" href="/account/profile">Your profile</a></li>
+					<li><hr class="dropdown-divider"></li>
+					<li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+				  </ul>
+			  </li>
+			  {% endif %}
+			  <li type="none" class="nav-item">
+                <a  style="color: rgb(14, 83, 210);" class="nav-link" href="/cart"><img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon"/>
+                    {{noOfItems}}</a>
+              </li>
+		  </div>
+          </div>
+        </div>
+      </nav>
+
+  <section class="h-100 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0">Cart items</h5>
+            </div>
+            {% for row in products %}
+            <div class="card-body">
+              <!-- Single item -->
+              <div class="row">
+                <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                  <!-- Image -->
+                  <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                    <img src={{url_for('static', filename='uploads/'+row[3])}} id="image"
+                      class="w-100" alt="Blue Jeans Jacket" />
+                    <a href="#!">
+                      <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                    </a>
+                  </div>
+                  <!-- Image -->
+                </div>
+  
+                <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                  <!-- Data -->
+                  <p><strong>{{row[1]}}</strong></p>
+                  <p>Color: blue</p>
+                  <p>Size: M</p>
+                  <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                    title="Remove item">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+                    title="Move to the wish list">
+                    <i class="fas fa-heart"></i>
+                  </button>
+                  <!-- Data -->
+                </div>
+  
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <!-- Quantity -->
+              
+            
+  
+                
+                
+                  <!-- Quantity -->
+  
+                  <!-- Price -->
+                  <p class="text-start text-md-center">
+                    <strong>${{row[2]}}</strong>
+                  </p>
+                  <!-- Price -->
+                </div>
+              </div>
+              <!-- Single item -->
+  
+              <hr class="my-4" />
+            </div>
+            {% endfor %}
+
+          </div>
+		  <div class="col-md-4 card-body" style="width: 100%;" >
+			<div class="card mb-4">
+			  <div class="card-header py-3">
+				<h5 class="mb-0">Summary</h5>
+			  </div>
+			  <div class="card-body">
+				<ul class="list-group list-group-flush">
+				  <li
+					class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+					Products
+					<span>${{totalPrice}}</span>
+				  </li>
+				  <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+					Shipping
+					<span>Gratis</span>
+				  </li>
+				  <li
+					class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+					<div>
+					  <strong>Total amount</strong>
+					  <strong>
+						<p class="mb-0">(including VAT)</p>
+					  </strong>
+					</div>
+					<span><strong>${{totalPrice}}</strong></span>
+				  </li>
+				</ul>
+	
+			  
+				  <a href="/checkout" class=" btn btn-primary btn-lg btn-block">Go to checkout</a>
+			
+			  </div>
+			</div>
+		  </div>
+          <div class="card mb-4">
+         
+            </div>
+          </div>
+
+        </div>
+       
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+

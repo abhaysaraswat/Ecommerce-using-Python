@@ -1,0 +1,290 @@
+<!-- <!DOCTYPE HTML>
+<html>
+<head>
+<title>Product Description</title>
+<link rel="stylesheet" href={{url_for('static', filename='css/productDescription.css')}} />
+<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css')}} />
+</head>
+<body>
+<div id="title">
+	<a href="/">
+		<img id="logo" src= {{ url_for('static', filename='images/logo.png') }} />
+	</a>
+	<form>
+		<input id="searchBox" type="text" name="searchQuery">
+		<input id="searchButton" type="submit" value="Search">
+	</form>
+
+	{% if not loggedIn %}
+	<div id="signInButton">
+		<a class="link" href="/loginForm">Sign In</a>
+	</div>
+	{% else %}
+	<div class="dropdown">
+		<button class="dropbtn">Hello, <br>{{firstName}}</button>
+		<div class="dropdown-content">
+			<a href="/account/orders">Your orders</a>
+			<a href="/account/profile">Your profile</a>
+			<hr>
+			<a href="/logout">Sign Out</a>
+		</div>
+	</div>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+			CART {{noOfItems}}
+		</a>
+	</div>
+</div>
+<div id="display">
+	<div id="productName">
+		<h1>{{data[1]}}</h1>
+	</div>
+	<div>
+		<img src={{url_for('static', filename='uploads/'+data[4]) }} id="productImage"/>
+	</div>
+
+	<div id="productDescription">
+		<h2>Details</h2>
+		<table id="descriptionTable">
+			<tr>
+				<td>Name</td>
+				<td>{{data[1]}}</td>
+			</tr>
+			<tr>
+				<td>Price</td>
+				<td>${{data[2]}}</td>
+			</tr>
+			<tr>
+				<td>Stock</td>
+				<td>{{data[5]}}</td>
+			</tr>
+		</table>
+		<h2>Description</h2>
+		<p>{{data[3]}}</p>
+	</div>
+	<div id="addToCart">
+		<a href="/addToCart?productId={{request.args.get('productId')}}">Add to Cart</a>
+	</div>
+</div>
+</body> -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Shop Item - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/static/css/styles.css" rel="stylesheet" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href={{url_for('static', filename='css/productDescription.css')}} />
+		<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css')}} />
+    </head>
+	<style>
+		#card-body{
+			border: 0px solid black;
+		}
+		 .card{
+			margin: 20px;
+			/* padding: 20px; */
+			display: flex;
+		flex-wrap: wrap;
+		} 
+		#cont{
+		display: flex;
+		flex-wrap: wrap;
+		
+		justify-content: center;
+		} 
+		body{
+			background-color:azure;
+		  -webkit-background-size: cover;
+		  -moz-background-size: cover;
+		  -o-background-size: cover;
+		  background-size: cover;
+		}
+		input{
+			display: none;
+		}
+		nav
+		{
+		background-color:  #2874f0;
+				
+		width: 100%;
+			height: 50px;
+			
+		}
+		.card{
+			/* border: 1px solid black; */
+			background-color:white;
+		
+		}
+		li{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-right: 5x ;
+	color: white;
+
+}
+.li1{
+	color: white;
+}
+			/* #back{
+			background-color: aqua;
+			width: 300px;
+			height: 300px;
+			/* padding-top: 50px ; */
+			/* margin-top: 15px;
+			margin-bottom: 12px;
+		} */ 
+		#sin{
+			padding-left: 50px;
+			display: flex;
+		}
+		#header{
+			width:auto;
+		height: 240px;
+		flex-shrink: 0;
+		padding-top: 8px;
+		margin-top: 8px;
+		/* border: 2px solid black; */
+		background: url(/static/images/visax-hmGwrYnr0VM-unsplash.jpg), lightgray 50% / cover no-repeat;
+		background: linear-gradient(174deg, #4382e1 2.08%, rgba(217, 217, 217, 0.00) 100%);
+		display: flex;
+		}
+		#header p{
+			color: black;
+		font-family: Inter;
+		font-size: 35px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+		/* padding-left: 20px; */
+		margin-top: 30px;
+		margin-left: 200px;
+		display: flex;
+		width: 515px;
+		height: 126px;
+		flex-direction: column;
+		}
+		</style>
+    <body>
+        <!-- Navigation-->
+		<nav class="navbar navbar-expand-lg">
+			<div class="container-fluid" style="font-weight: 500; font-size: 18px;" >
+			  <a class="navbar-brand li1" href="#">Ecart</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div id="sin">
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				  <li class="nav-item">
+					<a class="nav-link  navbar-brand active  li1" aria-current="page" href="/" style="color: white;">Home</a>
+				  </li>
+			  
+	  
+				<li class="nav-item dropdown">
+				  <a  class="nav-link dropdown-toggle li1" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="display: flex;">
+					  Category <br>
+				  </a>
+				  <ul class="dropdown-menu">
+						{% for row in categoryData %}
+				<li><a class="dropdown-item"  href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
+				{% endfor %}
+				  </ul>
+				</li>
+				</ul>
+				
+					{% if not loggedIn %}
+					<li type="none" class="nav-item" id="signInButton">
+						<a class=" nav-link navbar-brand" href="/loginForm" style="color: black;">Sign In</a>
+				  </li>
+					{% else %}
+					<li  type="none" class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+					  {{firstName}}
+					  </a>
+					  <ul class="dropdown-menu" >
+						<li><a class="dropdown-item" href="/account/orders">Your orders</a></li>
+						<li><a class="dropdown-item" href="/account/profile">Your profile</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+					  </ul>
+				  </li>
+				  {% endif %}
+				  <li type="none" class="nav-item">
+					<a  style="color: rgb(14, 83, 210);" class="nav-link" href="/cart"><img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon"/>
+						{{noOfItems}}</a>
+				  </li>
+			  </div>
+			  </div>
+			</div>
+		  </nav>
+        <!-- Product section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5" style=" box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src={{url_for('static', filename='uploads/'+data[4]) }} alt="..." /></div>
+                    <div class="col-md-6">
+                        <div class="small mb-1">{{data[5]}}</div>
+                        <h1 class="display-5 fw-bolder">{{data[1]}}</h1>
+                        <div class="fs-5 mb-5">
+                            <span class="text-decoration-line-through">${{data[2]+20}}</span>
+                            <span>${{data[2]}}</span>
+                        </div>
+                        <p class="lead">{{data[3]}}</p>
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi-cart-fill me-1" ></i>
+                                <a href="/addToCart?productId={{request.args.get('productId')}}">Add to cart</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer-->
+    	<section class="">
+			<!-- Footer -->
+			<footer class="text-center text-white" style="background-color: #2874f0;">
+			  <!-- Grid container -->
+			  <div class="container p-4 pb-0">
+				<!-- Section: CTA -->
+				<section class="">
+				  <p class="d-flex justify-content-center align-items-center">
+					<span class="me-3">Register</span>
+					<button type="button" class="btn btn-outline-light btn-rounded">
+					  Sign up!
+					</button>
+				  </p>
+				</section>
+				<!-- Section: CTA -->
+			  </div>
+			  <!-- Grid container -->
+		  
+			  <!-- Copyright -->
+			  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+				© 2020 Copyright:
+				<a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+			  </div>
+			  <!-- Copyright -->
+			</footer>
+			<!-- Footer -->
+		  </section>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+
